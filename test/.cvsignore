@@ -1,1 +1,16 @@
+test.ac3
+test.ac3.pes
+test.ac3.spdif
+test.all
+test.all.spdif
+test.all2
+test.all2.pes
+test.dts
+test.dts.pes
+test.dts.spdif
+test.lpcm
+test.lpcm.pes
+test.mp2
+test.mp2.pes
+test.mp2.spdif
 *.log
