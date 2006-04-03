@@ -4,7 +4,7 @@ rem ---------------------------------------------------------------------------
 rem This script generates files required for test application by decomposing
 rem test.vob file. 
 rem 
-rem test.vob file contains all possible for mpeg audio streams (AC3, MPA, DTS, 
+rem test.vob file contains all audio streams possible for mpeg (AC3, MPA, DTS, 
 rem LPCM). Therefore it is very useful to test players. Also it allows not to
 rem store all this raw streams to CVS because this streams may be extracted by 
 rem this script.
@@ -14,56 +14,107 @@ rem * raw stream
 rem * Program Elementary Stream (PES stream)
 rem * SPDIF stream (raw stream is incapsulated according to IEC 61937)
 rem
-rem All files using following extensions:
-rem * .ac3 .mp2 .dts .lpcm - raw steams of named format
-rem * .pes - added after raw stream extension to indicate that pes steam 
-rem   contains raw steam of named format
-rem * .spdif - added after raw stream extension to indicate that raw stream
-rem   is incapsulated according to IEC 61937.
-rem * other extensions may be used to indicate mixed-streams
+rem Files are names as:
 rem
-rem Also this script generates several kinds of mixed streams:
+rem   a.[format].[config].[file]
 rem
-rem * test.all       Contains ac3, mpa and dts streams with all possible 
-rem                  transitions between formats. This file is used to test 
-rem                  syncronization functions in valib library.
+rem where:
 rem
-rem * test.all.spdif Contains SPDIF-wraped test.all file.
-rem 
-rem * test.all2.pes  Contains PES streams with ac3, mpa, dts and lpcm streams
-rem                  with all possible transitions between formats.
+rem   format - main stream format:
+rem     mp2  - MPEG Audio
+rem     ac3  - Dolby Digital
+rem     dts  - DTS
+rem     pcm  - PCM
+rem     mad  - mixed stream - Mpa/Ac3/Dts (Mixed Audio Data :)
+rem     madp - mixed stream - Mpa/Ac3/Dts/Pcm
 rem
-rem * test.all2      Contains demuxed raw streams from test.all2.pes file.
+rem   config - channel configuration (same as mask field at Speakers class):
+rem     002  - mono
+rem     005  - stereo
+rem     03f  - 5.1
+rem     mix  - mixed stream
+rem
+rem   file - file format:
+rem     same as format - raw stream
+rem     lpcm           - linear PCM (big endian)
+rem     spdif          - spdif wrapped stream
+rem     pes            - pes wrapped stream
 rem
 rem ---------------------------------------------------------------------------
 
 mpeg_demux test.vob
 
+echo ------------------------------------------------------
 echo Building elementary streams
-mpeg_demux test.vob -d test.ac3 -ss:80
-mpeg_demux test.vob -d test.dts -ss:89
-mpeg_demux test.vob -d test.mp2 -s:c2
-mpeg_demux test.vob -d test.lpcm -ss:a3
 
+mpeg_demux test.vob -d a.mp2.005.mp2  -s:c0
+mpeg_demux test.vob -d a.mp2.002.mp2  -s:c1
+
+mpeg_demux test.vob -d a.ac3.03f.ac3  -ss:82
+mpeg_demux test.vob -d a.ac3.005.ac3  -ss:83
+
+mpeg_demux test.vob -d a.dts.03f.dts  -ss:8c
+mpeg_demux test.vob -d a.pcm.005.lpcm -ss:a5
+
+echo ------------------------------------------------------
 echo Building PES streams
-mpeg_demux test.vob -p test.ac3.pes -ss:80
-mpeg_demux test.vob -p test.dts.pes -ss:89
-mpeg_demux test.vob -p test.mp2.pes -s:c2
-mpeg_demux test.vob -p test.lpcm.pes -ss:a3
 
+mpeg_demux test.vob -p a.mp2.005.pes -s:c0
+mpeg_demux test.vob -p a.mp2.002.pes -s:c1
+
+mpeg_demux test.vob -p a.ac3.03f.pes -ss:82
+mpeg_demux test.vob -p a.ac3.005.pes -ss:83
+
+mpeg_demux test.vob -p a.dts.03f.pes -ss:8c
+mpeg_demux test.vob -p a.pcm.005.pes -ss:a5
+
+echo ------------------------------------------------------
 echo Building SPDIF streams
-spdifer test.ac3 test.ac3.spdif
-spdifer test.dts test.dts.spdif
-spdifer test.mp2 test.mp2.spdif
 
+spdifer a.mp2.005.mp2 a.mp2.005.spdif
+spdifer a.mp2.002.mp2 a.mp2.002.spdif
+                             
+spdifer a.ac3.03f.ac3 a.ac3.03f.spdif
+spdifer a.ac3.005.ac3 a.ac3.005.spdif
+                             
+spdifer a.dts.03f.dts a.dts.03f.spdif
+
+echo ------------------------------------------------------
+echo Building stream transitions
+echo mpa: stereo - mono - stereo
+echo ac3: 5.1 - stereo - 5.1
+
+copy /b a.mp2.005.mp2 + a.mp2.002.mp2 + a.mp2.005.mp2 a.mp2.mix.mp2
+copy /b a.ac3.03f.ac3 + a.ac3.005.ac3 + a.ac3.03f.ac3 a.ac3.mix.ac3
+
+echo ------------------------------------------------------
+echo Building SPDIF stream transitions
+echo mpa: stereo - mono - stereo
+echo ac3: 5.1 - stereo - 5.1
+
+copy /b a.mp2.005.spdif + a.mp2.002.spdif + a.mp2.005.spdif a.mp2.mix.spdif
+copy /b a.ac3.03f.spdif + a.ac3.005.spdif + a.ac3.03f.spdif a.ac3.mix.spdif
+
+echo ------------------------------------------------------
 echo Building stream transitions (ac3, dts, mpa)
-copy /b test.ac3+test.dts+test.mp2+test.ac3+test.mp2+test.dts+test.ac3 test.all
+echo ac3-dts-mp2-ac3-mp2-dts-ac3
 
-echo building SPDIF transitions (ac3, dts, mpa)
-copy /b test.ac3.spdif+test.dts.spdif+test.mp2.spdif+test.ac3.spdif+test.mp2.spdif+test.dts.spdif+test.ac3.spdif test.all.spdif
+copy /b a.ac3.03f.ac3 + a.dts.03f.dts + a.mp2.005.mp2 + a.ac3.03f.ac3 + a.mp2.005.mp2 + a.dts.03f.dts + a.ac3.03f.ac3 a.mad.mix.mad
 
-echo building PES transitions (ac3, dts, mpa, lpcm)
-copy /b test.ac3.pes+test.lpcm.pes+test.ac3.pes+test.dts.pes+test.mp2.pes+test.dts.pes+test.lpcm.pes+test.mp2.pes+test.ac3.pes+test.mp2.pes+test.lpcm.pes+test.dts.pes+test.ac3.pes test.all2.pes
+echo ------------------------------------------------------
+echo Building SPDIF transitions (ac3, dts, mpa)
+echo ac3-dts-mp2-ac3-mp2-dts-ac3
 
+copy /b a.ac3.03f.spdif + a.dts.03f.spdif + a.mp2.005.spdif + a.ac3.03f.spdif + a.mp2.005.spdif + a.dts.03f.spdif + a.ac3.03f.spdif a.mad.mix.spdif
+
+echo ------------------------------------------------------
+echo Building PES transitions (ac3, dts, mpa, lpcm)
+echo ac3-pcm-ac3-dts-mp2-dts-pcm-mp2-ac3-mp2-pcm-dts-ac3
+
+copy /b a.ac3.03f.pes + a.pcm.005.pes + a.ac3.03f.pes + a.dts.03f.pes + a.mp2.005.pes + a.dts.03f.pes + a.pcm.005.pes + a.mp2.005.pes + a.ac3.03f.pes + a.mp2.005.pes + a.pcm.005.pes + a.dts.03f.pes + a.ac3.03f.pes a.madp.mix.pes
+
+echo ------------------------------------------------------
 echo Building PES transitions output (ac3, dts, mpa, lpcm)
-copy /b test.ac3+test.lpcm+test.ac3+test.dts+test.mp2+test.dts+test.lpcm+test.mp2+test.ac3+test.mp2+test.lpcm+test.dts+test.ac3 test.all2
+echo ac3-pcm-ac3-dts-mp2-dts-pcm-mp2-ac3-mp2-pcm-dts-ac3
+
+copy /b a.ac3.03f.ac3 + a.pcm.005.lpcm + a.ac3.03f.ac3 + a.dts.03f.dts + a.mp2.005.mp2 + a.dts.03f.dts + a.pcm.005.lpcm + a.mp2.005.mp2 + a.ac3.03f.ac3 + a.mp2.005.mp2 + a.pcm.005.lpcm + a.dts.03f.dts + a.ac3.03f.ac3 a.madp.mix.madp

@@ -1,0 +1,270 @@
+Section=Settings
+{
+	Destination Folder=D:\Projects\AC3Filter_proj\samples\test\vob
+	Item=Palette
+	{
+		Name=DefaultPalette
+		Color 0=0, 0, 255
+		Color 1=255, 0, 0
+		Color 2=0, 0, 0
+		Color 3=255, 255, 255
+		Color 4=0, 255, 0
+		Color 5=255, 0, 255
+		Color 6=255, 255, 0
+		Color 7=0, 125, 125
+		Color 8=125, 125, 125
+		Color 9=225, 225, 225
+		Color 10=125, 0, 0
+		Color 11=0, 125, 0
+		Color 12=0, 0, 125
+		Color 13=222, 0, 255
+		Color 14=222, 125, 0
+		Color 15=125, 0, 125
+	}
+}
+Section=Content
+{
+	Item=Segment
+	{
+		Name=Segment_1
+		Display Mode=4:3
+		Item=Video Stream
+		{
+			Coding Mode=Mpeg-2
+			Standard=PAL
+			CC Field 1=No
+			CC Field 2=No
+			Item=Video Play
+			{
+				File=D:\Projects\AC3Filter_proj\samples\test\test.bmp
+				Size=1244216
+				Duration=Default
+			}
+		}
+		Item=Audio Stream
+		{
+			Stream Number=1
+			Language Extension=1
+			Delay=0
+			Type=4401
+			Frame Size=1152
+			Item=Audio Play
+			{
+				File=D:\Projects\AC3Filter_proj\samples\test\a.mp2.005.mp2
+				Size=576000
+			}
+		}
+		Item=Audio Stream
+		{
+			Stream Number=2
+			Language Extension=1
+			Delay=0
+			Type=4400
+			Frame Size=576
+			Item=Audio Play
+			{
+				File=D:\Projects\AC3Filter_proj\samples\test\a.mp2.002.mp2
+				Size=288000
+			}
+		}
+		Item=Audio Stream
+		{
+			Stream Number=3
+			Language Extension=1
+			Delay=0
+			Type=04c5
+			Frame Size=1792
+			Item=Audio Play
+			{
+				File=D:\Projects\AC3Filter_proj\samples\test\a.ac3.03f.ac3
+				Size=672000
+			}
+		}
+		Item=Audio Stream
+		{
+			Stream Number=4
+			Language Extension=1
+			Delay=0
+			Type=04c1
+			Frame Size=1280
+			Item=Audio Play
+			{
+				File=D:\Projects\AC3Filter_proj\samples\test\a.ac3.005.ac3
+				Size=480000
+			}
+		}
+		Item=Audio Stream
+		{
+			Stream Number=5
+			Language Extension=1
+			Delay=0
+			Type=c4c5
+			Frame Size=1006
+			Item=Audio Play
+			{
+				File=D:\Projects\AC3Filter_proj\samples\test\a.dts.03f.dts
+				Size=1134000
+			}
+		}
+		Item=Audio Stream
+		{
+			Stream Number=6
+			Language Extension=1
+			Delay=0
+			Type=8401
+			Frame Size=320
+			Item=Audio Play
+			{
+				File=D:\Projects\AC3Filter_proj\samples\test\a.pcm.005.wav
+				Size=2304000
+			}
+		}
+		Item=Scene List
+		{
+			Item=Scene
+			{
+				Name=Segment_1_scn1
+				Scene Time=00:00:00:00
+				Uop=00000000
+			}
+		}
+	}
+}
+Section=Navigation
+{
+	Item=First PGC
+	{
+		Name=FP
+		Menu ID=No Menu
+		Uop=00000000
+		PG Playback Mode=Sequential Playback
+		Repeat Times=0
+		PGC Still Time=0
+		Palette=DefaultPalette
+		Item=Pre Commands
+		{
+				JumpTT VTS01_TTL01
+		}
+		Item=Post Commands
+		{
+		}
+		Item=Cell Commands
+		{
+		}
+		Item=Program List
+		{
+		}
+	}
+	Item=VMG
+	{
+		Item=Language
+		{
+			Name=Unspecified_0
+			Language=unspecified
+			Item=PGC
+			{
+				Name=Unspecified_title
+				Menu ID=Title Menu
+				Uop=00000000
+				Next PGC=
+				GoUp PGC=
+				PG Playback Mode=Sequential Playback
+				Repeat Times=0
+				PGC Still Time=0
+				Palette=DefaultPalette
+				Item=Pre Commands
+				{
+						JumpTT VTS01_TTL01
+				}
+				Item=Post Commands
+				{
+				}
+				Item=Cell Commands
+				{
+				}
+				Item=Program List
+				{
+				}
+			}
+		}
+	}
+	Item=VTS01
+	{
+		Item=Language
+		{
+			Name=Unspecified_1
+			Language=unspecified
+			Item=PGC
+			{
+				Name=Unspecified_root
+				Menu ID=Root Menu
+				Uop=00000000
+				Next PGC=
+				GoUp PGC=
+				PG Playback Mode=Sequential Playback
+				Repeat Times=0
+				PGC Still Time=0
+				Palette=DefaultPalette
+				Item=Pre Commands
+				{
+						JumpVTS_TT VTS01_TTL01
+				}
+				Item=Post Commands
+				{
+				}
+				Item=Cell Commands
+				{
+				}
+				Item=Program List
+				{
+				}
+			}
+		}
+		Item=Title
+		{
+			Name=VTS01_TTL01
+			Uop=0
+			Item=PGC
+			{
+				Name=VTS01_TTL01_PGC1
+				Menu ID=Title Entry
+				Uop=00000000
+				Next PGC=
+				Prev PGC=
+				GoUp PGC=
+				PG Playback Mode=Sequential Playback
+				Repeat Times=0
+				PGC Still Time=0
+				Palette=DefaultPalette
+				Item=Pre Commands
+				{
+				}
+				Item=Post Commands
+				{
+				}
+				Item=Cell Commands
+				{
+				}
+				Item=Program List
+				{
+					Item=Program
+					{
+						Name=VTS01_TTL01_pg1
+						Item=Cell
+						{
+							Name=VTS01_TTL01_cell1
+							Linked Scene=Segment_1_scn1
+							Command=
+							Cell Still Time=0
+							Access Restriction Flag=Permitted
+						}
+					}
+				}
+			}
+			Item=Part of Title List
+			{
+				Item=VTS01_TTL01_pg1
+			}
+		}
+	}
+}
