@@ -108,13 +108,26 @@ echo ac3-dts-mp2-ac3-mp2-dts-ac3
 copy /b a.ac3.03f.spdif + a.dts.03f.spdif + a.mp2.005.spdif + a.ac3.03f.spdif + a.mp2.005.spdif + a.dts.03f.spdif + a.ac3.03f.spdif a.mad.mix.spdif
 
 echo ------------------------------------------------------
+echo Building PES transitions (ac3, dts, mpa)
+echo ac3-dts-mp2-ac3-mp2-dts-ac3
+
+copy /b a.ac3.03f.pes + a.dts.03f.pes + a.mp2.005.pes + a.ac3.03f.pes + a.mp2.005.pes + a.dts.03f.pes + a.ac3.03f.pes a.mad.mix.pes
+
+echo ------------------------------------------------------
+echo Building stream transitions (ac3, dts, mpa, lpcm)
+echo ac3-pcm-ac3-dts-mp2-dts-pcm-mp2-ac3-mp2-pcm-dts-ac3
+
+copy /b a.ac3.03f.ac3 + a.pcm.005.lpcm + a.ac3.03f.ac3 + a.dts.03f.dts + a.mp2.005.mp2 + a.dts.03f.dts + a.pcm.005.lpcm + a.mp2.005.mp2 + a.ac3.03f.ac3 + a.mp2.005.mp2 + a.pcm.005.lpcm + a.dts.03f.dts + a.ac3.03f.ac3 a.madp.mix.madp
+
+echo ------------------------------------------------------
+echo Building SPDIF transitions (ac3, dts, mpa, lpcm)
+echo ac3-pcm-ac3-dts-mp2-dts-pcm-mp2-ac3-mp2-pcm-dts-ac3
+
+copy /b a.ac3.03f.spdif + a.pcm.005.lpcm + a.ac3.03f.spdif + a.dts.03f.spdif + a.mp2.005.spdif + a.dts.03f.spdif + a.pcm.005.lpcm + a.mp2.005.spdif + a.ac3.03f.spdif + a.mp2.005.spdif + a.pcm.005.lpcm + a.dts.03f.spdif + a.ac3.03f.spdif a.madp.mix.spdif
+
+echo ------------------------------------------------------
 echo Building PES transitions (ac3, dts, mpa, lpcm)
 echo ac3-pcm-ac3-dts-mp2-dts-pcm-mp2-ac3-mp2-pcm-dts-ac3
 
 copy /b a.ac3.03f.pes + a.pcm.005.pes + a.ac3.03f.pes + a.dts.03f.pes + a.mp2.005.pes + a.dts.03f.pes + a.pcm.005.pes + a.mp2.005.pes + a.ac3.03f.pes + a.mp2.005.pes + a.pcm.005.pes + a.dts.03f.pes + a.ac3.03f.pes a.madp.mix.pes
 
-echo ------------------------------------------------------
-echo Building PES transitions output (ac3, dts, mpa, lpcm)
-echo ac3-pcm-ac3-dts-mp2-dts-pcm-mp2-ac3-mp2-pcm-dts-ac3
-
-copy /b a.ac3.03f.ac3 + a.pcm.005.lpcm + a.ac3.03f.ac3 + a.dts.03f.dts + a.mp2.005.mp2 + a.dts.03f.dts + a.pcm.005.lpcm + a.mp2.005.mp2 + a.ac3.03f.ac3 + a.mp2.005.mp2 + a.pcm.005.lpcm + a.dts.03f.dts + a.ac3.03f.ac3 a.madp.mix.madp
