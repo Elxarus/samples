@@ -21,9 +21,11 @@ a.ac3.mix.ac3
 a.mp2.mix.spdif
 a.ac3.mix.spdif
 a.mad.mix.mad
+a.mad.mix.pes
 a.mad.mix.spdif
 a.madp.mix.pes
 a.madp.mix.madp
+a.madp.mix.spdif
 test.log
 speed.log
 decode.log
