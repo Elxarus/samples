@@ -1,6 +1,6 @@
 Section=Settings
 {
-	Destination Folder=D:\Projects\AC3Filter_proj\samples\test\vob
+	Destination Folder=vob
 	Item=Palette
 	{
 		Name=DefaultPalette
@@ -36,7 +36,7 @@ Section=Content
 			CC Field 2=No
 			Item=Video Play
 			{
-				File=D:\Projects\AC3Filter_proj\samples\test\test.bmp
+				File=test.bmp
 				Size=1244216
 				Duration=Default
 			}
@@ -50,7 +50,7 @@ Section=Content
 			Frame Size=1152
 			Item=Audio Play
 			{
-				File=D:\Projects\AC3Filter_proj\samples\test\a.mp2.005.mp2
+				File=a.mp2.005.mp2
 				Size=576000
 			}
 		}
@@ -63,7 +63,7 @@ Section=Content
 			Frame Size=576
 			Item=Audio Play
 			{
-				File=D:\Projects\AC3Filter_proj\samples\test\a.mp2.002.mp2
+				File=a.mp2.002.mp2
 				Size=288000
 			}
 		}
@@ -76,7 +76,7 @@ Section=Content
 			Frame Size=1792
 			Item=Audio Play
 			{
-				File=D:\Projects\AC3Filter_proj\samples\test\a.ac3.03f.ac3
+				File=a.ac3.03f.ac3
 				Size=672000
 			}
 		}
@@ -85,12 +85,12 @@ Section=Content
 			Stream Number=4
 			Language Extension=1
 			Delay=0
-			Type=04c1
-			Frame Size=1280
+			Type=04c5
+			Frame Size=1792
 			Item=Audio Play
 			{
-				File=D:\Projects\AC3Filter_proj\samples\test\a.ac3.005.ac3
-				Size=480000
+				File=a.ac3.03f.ac3
+				Size=672000
 			}
 		}
 		Item=Audio Stream
@@ -98,12 +98,12 @@ Section=Content
 			Stream Number=5
 			Language Extension=1
 			Delay=0
-			Type=c4c5
-			Frame Size=1006
+			Type=04c1
+			Frame Size=1280
 			Item=Audio Play
 			{
-				File=D:\Projects\AC3Filter_proj\samples\test\a.dts.03f.dts
-				Size=1134000
+				File=a.ac3.005.ac3
+				Size=480000
 			}
 		}
 		Item=Audio Stream
@@ -111,11 +111,24 @@ Section=Content
 			Stream Number=6
 			Language Extension=1
 			Delay=0
+			Type=c4c5
+			Frame Size=1006
+			Item=Audio Play
+			{
+				File=a.dts.03f.dts
+				Size=1134000
+			}
+		}
+		Item=Audio Stream
+		{
+			Stream Number=7
+			Language Extension=1
+			Delay=0
 			Type=8401
 			Frame Size=320
 			Item=Audio Play
 			{
-				File=D:\Projects\AC3Filter_proj\samples\test\a.pcm.005.wav
+				File=a.pcm.005.wav
 				Size=2304000
 			}
 		}

@@ -19,9 +19,9 @@ if not exist "test.wavhdr" goto not_exist
 mpeg_demux test.vob -d a.mp2.005.mp2 -s:c0
 mpeg_demux test.vob -d a.mp2.002.mp2 -s:c1
 mpeg_demux test.vob -d a.ac3.03f.ac3 -ss:82
-mpeg_demux test.vob -d a.ac3.005.ac3 -ss:83
-mpeg_demux test.vob -d a.dts.03f.dts -ss:8c
-mpeg_demux test.vob -d a.pcm.005.lpcm.tmp -ss:a5
+mpeg_demux test.vob -d a.ac3.005.ac3 -ss:84
+mpeg_demux test.vob -d a.dts.03f.dts -ss:8d
+mpeg_demux test.vob -d a.pcm.005.lpcm.tmp -ss:a6
 
 copy /b test.wavhdr + a.pcm.005.lpcm.tmp a.pcm.005.wav
 del a.pcm.005.lpcm.tmp
