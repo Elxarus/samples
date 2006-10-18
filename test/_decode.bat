@@ -18,7 +18,7 @@ rem ---------------------------------------------------------------------------
 ..\..\valib\valdec\release\valdec a.ac3.mix.spdif -i -d >> decode.log
 
 ..\..\valib\valdec\release\valdec a.dts.03f.dts   -i -d >> decode.log
-rem ..\..\valib\valdec\release\valdec a.dts.03f.pes   -i -d >> decode.log
+..\..\valib\valdec\release\valdec a.dts.03f.pes   -i -d >> decode.log
 ..\..\valib\valdec\release\valdec a.dts.03f.spdif -i -d >> decode.log
 
 ..\..\valib\valdec\release\valdec a.mp2.002.mp2   -i -d >> decode.log
