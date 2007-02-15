@@ -56,6 +56,7 @@ mpeg_demux test.vob -d a.ac3.005.ac3  -ss:84
 
 mpeg_demux test.vob -d a.dts.03f.dts  -ss:8d
 mpeg_demux test.vob -d a.pcm.005.lpcm -ss:a6
+swab a.pcm.005.lpcm a.pcm.005.pcm
 
 echo ------------------------------------------------------
 echo Building PES streams
@@ -126,12 +127,15 @@ echo Building streams to test transitions between different
 echo formats including PCM (ac3, dts, mpa, lpcm)
 echo.
 echo ac3-pcm-ac3-dts-mp2-dts-pcm-mp2-ac3-mp2-pcm-dts-ac3
+echo.
+echo Note that pes and raw files contains LPCM, but SPDIF
+echo file uses PCM (correct file for SPDIF playback)
 
 echo -- RAW --
 copy /b a.ac3.03f.ac3 + a.pcm.005.lpcm + a.ac3.03f.ac3 + a.dts.03f.dts + a.mp2.005.mp2 + a.dts.03f.dts + a.pcm.005.lpcm + a.mp2.005.mp2 + a.ac3.03f.ac3 + a.mp2.005.mp2 + a.pcm.005.lpcm + a.dts.03f.dts + a.ac3.03f.ac3 a.madp.mix.madp
 
 echo -- SPDIF --
-copy /b a.ac3.03f.spdif + a.pcm.005.lpcm + a.ac3.03f.spdif + a.dts.03f.spdif + a.mp2.005.spdif + a.dts.03f.spdif + a.pcm.005.lpcm + a.mp2.005.spdif + a.ac3.03f.spdif + a.mp2.005.spdif + a.pcm.005.lpcm + a.dts.03f.spdif + a.ac3.03f.spdif a.madp.mix.spdif
+copy /b a.ac3.03f.spdif + a.pcm.005.pcm + a.ac3.03f.spdif + a.dts.03f.spdif + a.mp2.005.spdif + a.dts.03f.spdif + a.pcm.005.pcm + a.mp2.005.spdif + a.ac3.03f.spdif + a.mp2.005.spdif + a.pcm.005.pcm + a.dts.03f.spdif + a.ac3.03f.spdif a.madp.mix.spdif
 
 echo -- PES --
 copy /b a.ac3.03f.pes + a.pcm.005.pes + a.ac3.03f.pes + a.dts.03f.pes + a.mp2.005.pes + a.dts.03f.pes + a.pcm.005.pes + a.mp2.005.pes + a.ac3.03f.pes + a.mp2.005.pes + a.pcm.005.pes + a.dts.03f.pes + a.ac3.03f.pes a.madp.mix.pes
