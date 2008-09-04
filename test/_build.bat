@@ -139,3 +139,8 @@ copy /b a.ac3.03f.spdif + a.pcm.005.pcm + a.ac3.03f.spdif + a.dts.03f.spdif + a.
 
 echo -- PES --
 copy /b a.ac3.03f.pes + a.pcm.005.pes + a.ac3.03f.pes + a.dts.03f.pes + a.mp2.005.pes + a.dts.03f.pes + a.pcm.005.pes + a.mp2.005.pes + a.ac3.03f.pes + a.mp2.005.pes + a.pcm.005.pes + a.dts.03f.pes + a.ac3.03f.pes a.madp.mix.pes
+
+echo ------------------------------------------------------
+echo Building streams to test DTS conversions
+
+bsconvert a.dts.03f.dts a.dts.03f.dts14 14be
