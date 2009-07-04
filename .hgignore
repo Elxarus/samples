@@ -1,0 +1,7 @@
+syntax:glob
+
+# generated test files
+test\a.*
+
+# generated logs
+test\*.log
