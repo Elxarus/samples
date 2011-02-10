@@ -144,3 +144,9 @@ echo ------------------------------------------------------
 echo Building streams to test DTS conversions
 
 bsconvert a.dts.03f.dts a.dts.03f.dts14 14be
+
+echo ------------------------------------------------------
+echo Building AAC test streams
+
+faac test.pcm16.03f.wav -b 420 -o a.aac.03f.adts
+faad a.aac.03f.adts -b 4 -o a.aac.03f.adts.wav
