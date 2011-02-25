@@ -149,4 +149,9 @@ echo ------------------------------------------------------
 echo Building AAC test streams
 
 faac test.pcm16.03f.wav -b 420 -o a.aac.03f.adts
+
+echo ------------------------------------------------------
+echo Decoded streams
+
 faad a.aac.03f.adts -b 4 -o a.aac.03f.adts.wav
+valdec a.ac3.03f.ac3 -fmt:6 -w a.ac3.03f.ac3.wav
