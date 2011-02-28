@@ -155,3 +155,5 @@ echo Decoded streams
 
 faad a.aac.03f.adts -b 4 -o a.aac.03f.adts.wav
 valdec a.ac3.03f.ac3 -fmt:6 -w a.ac3.03f.ac3.wav
+valdec a.dts.03f.dts -fmt:6 -w a.dts.03f.dts.wav
+valdec a.mp2.005.mp2 -fmt:6 -w a.mp2.005.mp2.wav
