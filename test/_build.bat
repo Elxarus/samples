@@ -83,6 +83,11 @@ spdifer a.ac3.005.ac3 a.ac3.005.spdif
 spdifer a.dts.03f.dts a.dts.03f.spdif
 
 echo ------------------------------------------------------
+echo Building streams to test DTS conversions
+
+bsconvert a.dts.03f.dts a.dts.03f.dts14 14be
+
+echo ------------------------------------------------------
 echo Building streams to test transitions between the same
 echo format but with different number of channels.
 echo.
@@ -92,10 +97,12 @@ echo between tracks of the same formats.
 echo.
 echo mpa: stereo - mono - stereo
 echo ac3: 5.1 - 5.1 - stereo - 5.1
+echo dts: 8bit - 14bit - 8bit
 
 echo -- RAW --
 copy /b a.mp2.005.mp2 + a.mp2.002.mp2 + a.mp2.005.mp2 a.mp2.mix.mp2
 copy /b a.ac3.03f.ac3 + a.ac3.03f.ac3 + a.ac3.005.ac3 + a.ac3.03f.ac3 a.ac3.mix.ac3
+copy /b a.dts.03f.dts + a.dts.03f.dts14 + a.dts.03f.dts a.dts.03f.mix
 
 echo -- SPDIF --
 copy /b a.mp2.005.spdif + a.mp2.002.spdif + a.mp2.005.spdif a.mp2.mix.spdif
@@ -139,11 +146,6 @@ copy /b a.ac3.03f.spdif + a.pcm.005.pcm + a.ac3.03f.spdif + a.dts.03f.spdif + a.
 
 echo -- PES --
 copy /b a.ac3.03f.pes + a.pcm.005.pes + a.ac3.03f.pes + a.dts.03f.pes + a.mp2.005.pes + a.dts.03f.pes + a.pcm.005.pes + a.mp2.005.pes + a.ac3.03f.pes + a.mp2.005.pes + a.pcm.005.pes + a.dts.03f.pes + a.ac3.03f.pes a.madp.mix.pes
-
-echo ------------------------------------------------------
-echo Building streams to test DTS conversions
-
-bsconvert a.dts.03f.dts a.dts.03f.dts14 14be
 
 echo ------------------------------------------------------
 echo Building AAC test streams
