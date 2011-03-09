@@ -81,6 +81,7 @@ spdifer a.ac3.03f.ac3 a.ac3.03f.spdif
 spdifer a.ac3.005.ac3 a.ac3.005.spdif
                              
 spdifer a.dts.03f.dts a.dts.03f.spdif
+spdifer a.dts.03f.dts a.dts.03f.spdifdts -dts_mode_padded
 
 echo ------------------------------------------------------
 echo Building streams to test DTS conversions
