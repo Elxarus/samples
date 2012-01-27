@@ -1,4 +1,0 @@
-a.ac3.03f.ac3 375
-a.dts.03f.dts 1125
-a.mp2.002.mp2 500
-test.eac3.03f.eac3 819
