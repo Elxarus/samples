@@ -154,6 +154,11 @@ echo Building AAC test streams
 faac test.pcm16.03f.wav -b 420 -o a.aac.03f.adts
 
 echo ------------------------------------------------------
+echo Building FLAC test streams
+
+flac.exe -8 test.pcm16.527.wav -oa.flac.527.flac
+
+echo ------------------------------------------------------
 echo Decoded streams
 
 faad a.aac.03f.adts -b 4 -o a.aac.03f.adts.wav
